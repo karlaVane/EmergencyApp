@@ -10,6 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppEmergencia">
+        <service android:name=".MySMSservice"
+            android:exported="false"></service>
         <service android:name=".WhatsAppAccessibilityService"
             android:label="My Whatsapp Accessibility"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">

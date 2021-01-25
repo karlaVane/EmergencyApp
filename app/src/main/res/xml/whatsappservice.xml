@@ -3,6 +3,5 @@
     android:accessibilityEventTypes="typeWindowsChanged"
     android:packageNames="com.whatsapp"
     android:accessibilityFeedbackType="feedbackGeneric"
-
     android:canRetrieveWindowContent="true"
         />

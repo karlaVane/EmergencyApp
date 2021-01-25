@@ -4,12 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.media.audiofx.BassBoost;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.telephony.SmsManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -58,6 +62,11 @@ public class MainActivity extends AppCompatActivity {
                     public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
                     }
     }).check();
+        if(!isAccessibilityOn(getApplicationContext())){
+            Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
     }
 
     public void contactos(View vista){
@@ -75,20 +84,7 @@ public class MainActivity extends AppCompatActivity {
                         android.R.anim.fade_out) //Optional - default: No animation overrides
                 .showPickerForResult(CONTACT_PICKER_REQUEST);
     }
-/*
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == CONTACT_PICKER_REQUEST){
-            if(resultCode == RESULT_OK) {
-                List<ContactResult> results = MultiContactPicker.obtainResult(data);
-                Log.d("MyTag", results.get(0).getDisplayName());
-            } else if(resultCode == RESULT_CANCELED){
-                System.out.println("User closed the picker without selecting items.");
-            }
-        }
-    }
-*/
+
     public void btnsms(View vista){
         try {
             if(!results.isEmpty()){
@@ -124,64 +120,43 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     /////////////////////
-
-    public void WhatsAppMessage(View vista){
-
-        if (num.getText().toString().isEmpty()){
-            Intent sendIntent = new Intent();
-            sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT,mensaje.getText().toString());
-            sendIntent.setType("text/plain");
-            sendIntent.setPackage("com.whatsapp");
-            startActivity(sendIntent);
-        }else{
-            Intent sendIntent = new Intent();
-            sendIntent.setAction(Intent.ACTION_VIEW);
-            String uri ="whatsapp://send?phone="+num.getText().toString()+"&text="+mensaje.getText().toString();//almacenará la ubicación o recurso q queremos compartir con whatsapp
-            sendIntent.setData(Uri.parse(uri));
-            startActivity(sendIntent);
+    private boolean isAccessibilityOn(Context context){
+        int accessibilityEnabled = 0;
+        final String service = getPackageName() + "/" + WhatsAppAccessibilityService.class.getCanonicalName();
+        try {
+            accessibilityEnabled = Settings.Secure.getInt(
+                    context.getApplicationContext().getContentResolver(),
+                    android.provider.Settings.Secure.ACCESSIBILITY_ENABLED);
+            //Log.v(TAG, "accessibilityEnabled = " + accessibilityEnabled);
+        } catch (Settings.SettingNotFoundException e) {
+            //Log.e(TAG, "Error finding setting, default accessibility to not found: "
+                   // + e.getMessage());
         }
-    }
-    public void mensajeDirecto(View vista){
-        PackageManager packageManager= getApplicationContext().getPackageManager();
-        Intent i= new Intent(Intent.ACTION_VIEW);
-        try{
-            String url="https://api.whatsapp.com/send?phone="+num.getText().toString()+"&text="+ URLEncoder.encode(mensaje.getText().toString(),"UTF-8");
-            i.setPackage("com.whatsapp");
-            i.setData(Uri.parse(url));
-            if(i.resolveActivity(packageManager)!=null){
-                getApplicationContext().startActivity(i);
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
+        TextUtils.SimpleStringSplitter mStringColonSplitter = new TextUtils.SimpleStringSplitter(':');
 
-    private void handleActionWHATSAPP(String message,String count,String[] mobile_number){
-        try{
-            PackageManager packageManager= getApplicationContext().getPackageManager();
-            if(mobile_number.length!=0){
-                for(int j=0;j<mobile_number.length; j++){
-                    for(int i =0;i<Integer.parseInt(count.toString());i++){
-                       String number =mobile_number[j];
-                       String url="https://api.whatsapp.com?phone="+number+"&text="+URLEncoder.encode(message,"UTF-8");
-                       Intent whatsappIntent= new Intent(Intent.ACTION_VIEW);
-                       whatsappIntent.setPackage("com.whastapp");
-                       whatsappIntent.setData(Uri.parse(url));
-                       whatsappIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                       if(whatsappIntent.resolveActivity(packageManager)!=null){
-                           getApplicationContext().startActivity(whatsappIntent);
-                           Thread.sleep(5000);
-                           //sendBroadcastMessage("Result: "+number);
-                       }
+        if (accessibilityEnabled == 1) {
+            //Log.v(TAG, "***ACCESSIBILITY IS ENABLED*** -----------------");
+            String settingValue = Settings.Secure.getString(
+                    context.getApplicationContext().getContentResolver(),
+                    Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES);
+            if (settingValue != null) {
+                mStringColonSplitter.setString(settingValue);
+                while (mStringColonSplitter.hasNext()) {
+                    String accessibilityService = mStringColonSplitter.next();
+
+                    //Log.v(TAG, "-------------- > accessibilityService :: " + accessibilityService + " " + service);
+                    if (accessibilityService.equalsIgnoreCase(service)) {
+                        //Log.v(TAG, "We've found the correct setting - accessibility is switched on!");
+                        return true;
                     }
                 }
             }
-        }catch(Exception e){
-
+        } else {
+            //Log.v(TAG, "***ACCESSIBILITY IS DISABLED***");
         }
+
+        return false;
     }
-
-
 }

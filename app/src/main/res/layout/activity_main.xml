@@ -57,7 +57,7 @@
         android:layout_width="196dp"
         android:layout_height="45dp"
         android:layout_marginTop="28dp"
-        android:onClick="btnsms"
+        android:onClick="handleActionWHATSAPP"
         android:text="@string/enviar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.516"
