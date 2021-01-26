@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:soundEffectsEnabled="false"
     tools:context=".MainActivity">
 
     <TextView
@@ -57,7 +58,7 @@
         android:layout_width="196dp"
         android:layout_height="45dp"
         android:layout_marginTop="28dp"
-        android:onClick="handleActionWHATSAPP"
+        android:onClick="btnsms"
         android:text="@string/enviar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.516"

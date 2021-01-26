@@ -2,10 +2,13 @@ package com.ksld.appemergencia;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import android.Manifest;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.media.audiofx.BassBoost;
@@ -67,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         }
+        IntentFilter intent = new IntentFilter("my.own.broadcast");
+        LocalBroadcastManager.getInstance(this).registerReceiver(myLocalBroadcastReceiver,intent);
     }
 
     public void contactos(View vista){
@@ -86,21 +91,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void btnsms(View vista){
-        try {
-            if(!results.isEmpty()){
-                for (int j=0;j<results.size();j++){
-                    for(int i=0;i<Integer.parseInt(cant.getText().toString());i++){
-                        SmsManager smsManager = SmsManager.getDefault();
-                        smsManager.sendTextMessage(results.get(i).getPhoneNumbers().get(0).getNumber(),null,mensaje.getText().toString(),null,null);
-                        Toast.makeText(this, "Correcto", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-        }catch (Exception e){
-            Toast.makeText(this, "Algo falló", Toast.LENGTH_SHORT).show();
-        }
+        MyWhatsService.startActionSMS(getApplicationContext(),mensaje.getText().toString(),
+                cant.getText().toString(),results);
     }
 
+    public void btnwhats(View vista){
+        MyWhatsService.startActionWHATSAPP(getApplicationContext(),mensaje.getText().toString(),
+                cant.getText().toString(),results);
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -159,4 +157,12 @@ public class MainActivity extends AppCompatActivity {
 
         return false;
     }
+
+    private BroadcastReceiver myLocalBroadcastReceiver= new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String result = intent.getStringExtra("result");
+            Toast.makeText(context,result, Toast.LENGTH_SHORT).show();
+        }
+    };
 }
