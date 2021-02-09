@@ -26,7 +26,7 @@ public class WhatsAppAccessibilityService extends AccessibilityService {
 
         //checking  if messafe field if filled with text and ending with our suffix
         AccessibilityNodeInfoCompat messageField = messageNodeList.get(0);
-        if(messageField == null || messageField.getText().length()==0 || !messageField.getText().toString().endsWith("    ")){
+        if(messageField == null || messageField.getText().length()==0 || !messageField.getText().toString().endsWith("   ")){
             return;
         }
 

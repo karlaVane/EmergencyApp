@@ -135,16 +135,23 @@ public class MyWhatsService extends IntentService {
                 for(int j=0;j<mobile_number.length; j++){
                     for(int i =0;i<Integer.parseInt(count.toString());i++){
                         String number =mobile_number[j];
-                        String url="https://api.whatsapp.com?phone="+number+"&text="+ URLEncoder.encode(message,"UTF-8");
+                        //number=number.replace("+","");
+                        //System.out.println("NUMEROOO"+number);
+                        String url="https://api.whatsapp.com/send?phone="+number+"&text="+ URLEncoder.encode(message,"UTF-8");
+                        System.out.println(url);
                         Intent whatsappIntent= new Intent(Intent.ACTION_VIEW);
                         whatsappIntent.setPackage("com.whatsapp");
                         whatsappIntent.setData(Uri.parse(url));
+                        System.out.println("hasta aqui vale");
                         whatsappIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         if(whatsappIntent.resolveActivity(packageManager)!=null){
+                            System.out.println("ashhh");
                             getApplicationContext().startActivity(whatsappIntent);
+                            System.out.println("ashhhx2ss");
                             Thread.sleep(5000);
                             sendBroadcastMessage("Result: "+number);
                         }else{
+                            System.out.println("noa valeeeeee");
                             sendBroadcastMessage("Result: falló");
                         }
                     }
@@ -152,6 +159,7 @@ public class MyWhatsService extends IntentService {
             }
         }catch(Exception e){
             sendBroadcastMessage("Algo fue mal");
+            System.out.println("grrr!!");
         }
     }
 

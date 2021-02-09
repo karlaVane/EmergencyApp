@@ -12,9 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppEmergencia">
+        <activity android:name=".ConexionWhats"></activity>
+
         <service
             android:name=".MyWhatsService"
-            android:exported="false"></service>
+            android:exported="false" />
         <service
             android:name=".WhatsAppAccessibilityService"
             android:label="My Whatsapp Accessibility"
