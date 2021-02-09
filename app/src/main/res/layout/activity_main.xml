@@ -10,25 +10,25 @@
         android:id="@+id/nombre"
         android:layout_width="317dp"
         android:layout_height="55dp"
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="52dp"
         android:ems="10"
         android:hint="@string/nombre"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.689"
+        app:layout_constraintHorizontal_bias="0.691"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/titulo" />
 
     <EditText
         android:id="@+id/email"
         android:layout_width="317dp"
         android:layout_height="55dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="32dp"
         android:ems="10"
         android:hint="@string/email"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.712"
+        app:layout_constraintHorizontal_bias="0.691"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nombre" />
 
@@ -36,36 +36,111 @@
         android:id="@+id/pass2"
         android:layout_width="317dp"
         android:layout_height="55dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="32dp"
         android:ems="10"
         android:hint="@string/pass2"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.709"
+        app:layout_constraintHorizontal_bias="0.691"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pass" />
 
     <Button
         android:id="@+id/btnregistrarse"
-        android:layout_width="170dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="100dp"
+        android:layout_width="144dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginRight="68dp"
+        android:background="#3F51B5"
         android:text="@string/btnRegistrarse"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pass2" />
 
     <EditText
         android:id="@+id/pass"
         android:layout_width="317dp"
         android:layout_height="55dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="32dp"
         android:ems="10"
         android:hint="@string/pass"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.712"
+        app:layout_constraintHorizontal_bias="0.691"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email" />
+
+    <TextView
+        android:id="@+id/titulo"
+        android:layout_width="409dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="56dp"
+        android:background="#313435"
+        android:gravity="center"
+        android:shadowColor="#9C27B0"
+        android:text="@string/titulo"
+        android:textColor="#183289"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/icon_user"
+        android:layout_width="57dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="52dp"
+        app:layout_constraintEnd_toStartOf="@+id/nombre"
+        app:layout_constraintHorizontal_bias="0.625"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titulo"
+        app:srcCompat="@drawable/ic_baseline_person_24"
+        android:contentDescription="TODO" />
+
+    <ImageView
+        android:id="@+id/icon_email"
+        android:layout_width="45dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toStartOf="@+id/email"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/icon_user"
+        app:srcCompat="@drawable/mail" />
+
+    <ImageView
+        android:id="@+id/icon_pass"
+        android:layout_width="54dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toStartOf="@+id/pass"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/icon_email"
+        app:srcCompat="@drawable/key" />
+
+    <ImageView
+        android:id="@+id/icon_pass2"
+        android:layout_width="56dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="52dp"
+        app:layout_constraintEnd_toStartOf="@+id/pass2"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/icon_pass"
+        app:srcCompat="@drawable/key" />
+
+    <Button
+        android:id="@+id/btnSalir"
+        android:layout_width="145dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="76dp"
+        android:background="#F44336"
+        android:text="@string/btnSalir"
+        app:backgroundTint="#F44336"
+        app:layout_constraintEnd_toStartOf="@+id/btnregistrarse"
+        app:layout_constraintHorizontal_bias="0.692"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pass2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

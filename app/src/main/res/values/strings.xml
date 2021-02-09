@@ -9,6 +9,7 @@
     <string name="btnwhatsapp">ENVIAR POR WHATSAPP</string>
 
     <!--ACTIVITY REGISTRARSE-->
+    <string name="titulo">DISCRET SECURITY APP</string>
     <string name="nombre">Nombre</string>
     <string name="email">Correo electrónico</string>
     <string name="pass">Contraseña</string>

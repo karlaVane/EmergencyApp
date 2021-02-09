@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppEmergencia">
-        <activity android:name=".ConexionWhats"></activity>
+        <activity android:name=".menu"></activity>
+        <activity android:name=".ConexionWhats" />
 
         <service
             android:name=".MyWhatsService"
