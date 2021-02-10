@@ -8,7 +8,6 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.CAMERA" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,7 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppEmergencia">
-        <activity android:name=".menu"></activity>
+        <activity android:name=".configuracion"></activity>
+        <activity android:name=".funcionalidad" />
+        <activity android:name=".menu" />
         <activity android:name=".ConexionWhats" />
 
         <service

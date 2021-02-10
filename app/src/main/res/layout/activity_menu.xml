@@ -8,9 +8,72 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="392dp"
-        android:layout_height="238dp"
+        android:layout_width="414dp"
+        android:layout_height="202dp"
+        android:background="#0B0A0A"
         android:text="TextView"
-        tools:layout_editor_absoluteX="9dp"
-        tools:layout_editor_absoluteY="4dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="184dp"
+        android:layout_height="150dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.528"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo_azul" />
+
+    <TextView
+        android:id="@+id/menu"
+        android:layout_width="332dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:text="@string/menu"
+        android:textColor="#FDFDFD"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <Button
+        android:id="@+id/funciona"
+        android:layout_width="355dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="68dp"
+        android:onClick="ac_funcionalidad"
+        android:text="@string/btnfunciona"
+        android:textSize="18sp"
+        app:backgroundTint="#4A9A33"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/conf"
+        android:layout_width="355dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="40dp"
+        android:onClick="ac_configuracion"
+        android:text="@string/btnConfig"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/funciona" />
+
+    <Button
+        android:id="@+id/btnsalirmenu"
+        android:layout_width="355dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="40dp"
+        android:onClick="salir"
+        android:text="@string/btnSalir"
+        android:textSize="18sp"
+        app:backgroundTint="#F44336"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/conf" />
 </androidx.constraintlayout.widget.ConstraintLayout>
