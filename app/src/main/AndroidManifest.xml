@@ -15,12 +15,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppEmergencia">
-<<<<<<< HEAD
+
         <activity android:name=".ComoFunciona_1"></activity>
-=======
+
         <activity android:name=".configuracion"></activity>
         <activity android:name=".funcionalidad" />
->>>>>>> 7f0bb7c086c1ec97a8480baaad7de69f0a9c3288
+
         <activity android:name=".menu" />
         <activity android:name=".ConexionWhats" />
 
@@ -39,6 +39,12 @@
                 <action android:name="android.accessibilityservice.AccessibilityService" />
             </intent-filter>
         </service>
+        <service android:name=".RecorderService" />
+        <service android:name=".PlayerService" />
+        <service android:name=".VolumenService"
+            android:foregroundServiceType="mediaPlayback|mediaProjection"/>
+        <service android:name=".notificationService"/>
+
 
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -47,6 +53,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
     </application>
 
 </manifest>
